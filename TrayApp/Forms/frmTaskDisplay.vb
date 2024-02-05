@@ -22,6 +22,7 @@
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        
         Dim starttime As DateTime = lblStartTime.Text
         Dim lblRecTimertick As DateTime
 

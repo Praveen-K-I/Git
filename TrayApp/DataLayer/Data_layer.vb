@@ -1,8 +1,10 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Configuration
+Imports System.Data
+Imports System.Data.SqlClient
 
 Public Class Data_layer
     Dim cmd As New SqlCommand
-    Dim con As New SqlConnection("Data Source=.\SQLEXPRESS;Initial Catalog=TrackTask;Integrated Security=True")
+    Dim con As New SqlConnection(ConfigurationManager.AppSettings("connectionString"))
     Dim rdr As SqlDataReader
     Dim adptr As New SqlDataAdapter
     Dim Task_Id As Integer
@@ -16,11 +18,7 @@ Public Class Data_layer
 
     Public Function Get_UserData()
 
-        cmd.Connection = con
-        If con.State = Data.ConnectionState.Open Then
-            con.Close()
-        End If
-        con.Open()
+        cmd.Connection = GetMy_Connnection()
         ' Stored procedure method also we can use here , but  using  the code as follows due to time limitation
         cmd.CommandText = "Select * from tblUser where UserName='" & User & "' and Password='" & pwd & "'"
         rdr = cmd.ExecuteReader
@@ -34,24 +32,37 @@ Public Class Data_layer
         End If
         Return userInfo
     End Function
+    Public Function GetMy_Connnection()
 
+        Try
+            If (con.State = ConnectionState.Closed) Then
+                con.Open()
+
+            End If
+            Return con
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Information")
+        Finally
+
+        End Try
+
+
+    End Function
     Public Function Get_GridData()
         Dim dt As New System.Data.DataTable
-        cmd.Connection = con
-        con.Open()
+        cmd.Connection = GetMy_Connnection()
         cmd.CommandText = "Select Id,TaskDescription from tblTask where UserId=" & userInfo.set_UserId & ""
         adptr.SelectCommand = cmd
         adptr.Fill(dt)
-        con.Close()
         Return dt
     End Function
     Public Sub Insert_WorkLog()
-        cmd.Connection = con
-        con.Open()
+        cmd.Connection = GetMy_Connnection()
+
         cmd.CommandText = "insert into tblWorkLog(TaskId,UserId,Days,Hours,Minutes) values(" &
             Task_Id & "," & User_Id & "," & Days & "," & Hours & "," & Minutes & ")"
         cmd.ExecuteNonQuery()
-        con.Close()
+
     End Sub
     Public Property set_User() As String
         Get
