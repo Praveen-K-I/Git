@@ -17,20 +17,27 @@ Public Class Data_layer
     Public Shared userInfo As New userData
 
     Public Function Get_UserData()
+        Try
 
-        cmd.Connection = GetMy_Connnection()
-        ' Stored procedure method also we can use here , but  using  the code as follows due to time limitation
-        cmd.CommandText = "Select * from tblUser where UserName='" & User & "' and Password='" & pwd & "'"
-        rdr = cmd.ExecuteReader
-        If rdr.HasRows = True Then
-            rdr.Read()
-            userInfo.set_UserId = rdr.Item(0)
-            userInfo.set_UserName = rdr.Item(1)
+            cmd.Connection = GetMy_Connnection()
+
+            ' Stored procedure method also we can use here , but  using  the code as follows due to time limitation
+            cmd.CommandText = "Select * from tblUser where UserName='" & User & "' and Password='" & pwd & "'"
+            rdr = cmd.ExecuteReader
+            If rdr.HasRows = True Then
+                rdr.Read()
+                userInfo.set_UserId = rdr.Item(0)
+                userInfo.set_UserName = rdr.Item(1)
+            Else
+                userInfo.set_UserId = 0
+            End If
             rdr.Close()
-        Else
-            userInfo.set_UserId = 0
-        End If
-        Return userInfo
+            Return userInfo
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Information")
+        End Try
+
     End Function
     Public Function GetMy_Connnection()
 

@@ -38,6 +38,9 @@
     Private Sub frmTaskSelection_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         DataGridView1.DataSource = data_layer.Get_GridData()
+        If DataGridView1.DataSource IsNot Nothing Then
+            DataGridView1.Columns(1).Width = 300
+        End If
 
     End Sub
 End Class

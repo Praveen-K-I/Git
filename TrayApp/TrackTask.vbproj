@@ -132,6 +132,48 @@
   <ItemGroup>
     <None Include="Resources\Window.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedExit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pause_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start_icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lock.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lock1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

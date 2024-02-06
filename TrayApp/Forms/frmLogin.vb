@@ -2,8 +2,8 @@
     Dim data_layer As New Data_layer
     Dim user_Data As New userData
     Private Sub btnOk_Click(sender As Object, e As EventArgs) Handles btnOk.Click
-        Try
-            data_layer.set_User = txtUser.Text.Trim()
+
+        data_layer.set_User = txtUser.Text.Trim()
             data_layer.set_Password = txtPass.Text.Trim()
 
             user_Data = data_layer.Get_UserData()
@@ -18,11 +18,6 @@
                 Me.Hide()
 
             End If
-        Catch ex As Exception
-
-            MsgBox("Error", MsgBoxStyle.Critical, "Information")
-
-        End Try
 
 
     End Sub
