@@ -1,6 +1,6 @@
 ﻿Public Class frmTaskSelection
 
-    Dim data_layer As New Data_layer
+    Dim Business_layer As New Business_Logic
     Public Sub New()
         InitializeComponent()
     End Sub
@@ -12,10 +12,10 @@
         Try
 
             task_Data.set_TaskId = DataGridView1.CurrentRow.Cells(0).Value
-            task_Data.set_UserId = Data_layer.userInfo.set_UserId
+            task_Data.set_UserId = Business_layer.userBusinesInfo.set_UserId
             task_Data.set_Task_Name = DataGridView1.CurrentRow.Cells(1).Value
 
-            frmTaskDisplay.Text = "Task Of " & Data_layer.userInfo.set_UserName
+            frmTaskDisplay.Text = "Task Of " & Business_layer.userBusinesInfo.set_UserName
             frmTaskDisplay.task_Info = task_Data
             frmTaskDisplay.Show()
             frmTaskDisplay.Timer1.Start()
@@ -37,7 +37,7 @@
 
     Private Sub frmTaskSelection_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        DataGridView1.DataSource = data_layer.Get_GridData()
+        DataGridView1.DataSource = Business_layer.Get_GridData()
         If DataGridView1.DataSource IsNot Nothing Then
             DataGridView1.Columns(1).Width = 300
         End If

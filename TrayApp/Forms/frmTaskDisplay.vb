@@ -3,7 +3,7 @@
     Dim task_Data As New taskData
     Dim glblMyNotifyobj As New NotifyIcon
     Dim showCount As Integer = 0
-    Dim data_layer As New Data_layer
+    Dim Business_layer As New Business_Logic
 
 
     Private Sub frmTaskDisplay_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
@@ -108,14 +108,14 @@
         Dim starttime As DateTime = lblStartTime.Text
         Hide()
         Try
-
-            data_layer.set_Days = String.Format("{0}", DateTime.Now.Subtract(starttime).Days)
-            data_layer.set_Hours = String.Format("{0}", (DateTime.Now - starttime).Hours)
-            data_layer.set_Minutes = String.Format("{0}", (DateTime.Now - starttime).Minutes)
-            data_layer.set_UserId = task_Data.set_UserId
-            data_layer.set_TaskId = task_Data.set_TaskId
-            If (data_layer.set_Days + data_layer.set_Hours + data_layer.set_Minutes <> 0) Then
-                data_layer.Insert_WorkLog()
+            Dim workLog As New workLogData
+            workLog.set_Days = String.Format("{0}", DateTime.Now.Subtract(starttime).Days)
+            workLog.set_Hours = String.Format("{0}", (DateTime.Now - starttime).Hours)
+            workLog.set_Minutes = String.Format("{0}", (DateTime.Now - starttime).Minutes)
+            workLog.set_UserId = task_Data.set_UserId
+            workLog.set_TaskId = task_Data.set_TaskId
+            If (workLog.set_Days + workLog.set_Hours + workLog.set_Minutes <> 0) Then
+                Business_layer.Insert_WorkLog(workLog)
             End If
 
             frmTaskSelection.Show()

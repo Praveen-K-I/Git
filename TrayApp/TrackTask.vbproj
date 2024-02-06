@@ -61,9 +61,11 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\Business_Logic.vb" />
     <Compile Include="DataLayer\Data_layer.vb" />
     <Compile Include="DataLayer\taskData.vb" />
     <Compile Include="DataLayer\userData.vb" />
+    <Compile Include="DataLayer\workLogData.vb" />
     <Compile Include="Forms\frmLogin.Designer.vb">
       <DependentUpon>frmLogin.vb</DependentUpon>
     </Compile>

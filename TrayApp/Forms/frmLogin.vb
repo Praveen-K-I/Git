@@ -1,14 +1,14 @@
 ﻿Public Class frmLogin
-    Dim data_layer As New Data_layer
+    Dim Business_layer As New Business_Logic
     Dim user_Data As New userData
     Private Sub btnOk_Click(sender As Object, e As EventArgs) Handles btnOk.Click
 
-        data_layer.set_User = txtUser.Text.Trim()
-            data_layer.set_Password = txtPass.Text.Trim()
+        Business_layer.set_User = txtUser.Text.Trim()
+        Business_layer.set_Password = txtPass.Text.Trim()
 
-            user_Data = data_layer.Get_UserData()
+        user_Data = Business_layer.Get_UserData()
 
-            If user_Data.set_UserId = 0 Then
+        If user_Data.set_UserId = 0 Then
 
                 MsgBox("Invalid user name or password", MsgBoxStyle.Critical, "Informartion")
 

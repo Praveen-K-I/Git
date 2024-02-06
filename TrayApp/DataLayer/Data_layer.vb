@@ -7,16 +7,10 @@ Public Class Data_layer
     Dim con As New SqlConnection(ConfigurationManager.AppSettings("connectionString"))
     Dim rdr As SqlDataReader
     Dim adptr As New SqlDataAdapter
-    Dim Task_Id As Integer
-    Dim User_Id As Integer
-    Dim Days As Integer
-    Dim Hours As Integer
-    Dim Minutes As Integer
-    Dim User As String
-    Dim pwd As String
+
     Public Shared userInfo As New userData
 
-    Public Function Get_UserData()
+    Public Function Get_UserData(ByVal User As String, ByVal pwd As String)
         Try
 
             cmd.Connection = GetMy_Connnection()
@@ -63,71 +57,13 @@ Public Class Data_layer
         adptr.Fill(dt)
         Return dt
     End Function
-    Public Sub Insert_WorkLog()
+    Public Sub Insert_WorkLog(ByVal workLog As workLogData)
         cmd.Connection = GetMy_Connnection()
 
         cmd.CommandText = "insert into tblWorkLog(TaskId,UserId,Days,Hours,Minutes) values(" &
-            Task_Id & "," & User_Id & "," & Days & "," & Hours & "," & Minutes & ")"
+            workLog.set_TaskId & "," & workLog.set_UserId & "," & workLog.set_Days & "," & workLog.set_Hours & "," & workLog.set_Minutes & ")"
         cmd.ExecuteNonQuery()
 
     End Sub
-    Public Property set_User() As String
-        Get
-
-        End Get
-        Set(ByVal value As String)
-            User = value
-        End Set
-    End Property
-    Public Property set_Password() As String
-        Get
-
-        End Get
-        Set(ByVal value As String)
-            pwd = value
-        End Set
-    End Property
-
-    Public Property set_TaskId() As Integer
-        Get
-            Return Task_Id
-        End Get
-        Set(ByVal value As Integer)
-            Task_Id = value
-        End Set
-    End Property
-    Public Property set_UserId() As Integer
-        Get
-            Return User_Id
-        End Get
-        Set(ByVal value As Integer)
-            User_Id = value
-        End Set
-    End Property
-    Public Property set_Days() As Integer
-        Get
-            Return Days
-        End Get
-        Set(ByVal value As Integer)
-            Days = value
-        End Set
-    End Property
-
-    Public Property set_Hours() As Integer
-        Get
-            Return Hours
-        End Get
-        Set(ByVal value As Integer)
-            Hours = value
-        End Set
-    End Property
-    Public Property set_Minutes() As Integer
-        Get
-            Return Minutes
-        End Get
-        Set(ByVal value As Integer)
-            Minutes = value
-        End Set
-    End Property
 
 End Class
